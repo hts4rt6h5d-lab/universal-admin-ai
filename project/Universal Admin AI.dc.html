@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/nocturne-c9a3c3bd-85e9-42dc-b2ba-0f986ef0200c/styles.css">
+  <script src="_ds/nocturne-c9a3c3bd-85e9-42dc-b2ba-0f986ef0200c/_ds_bundle.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+  <style>
+    body{margin:0}
+    @keyframes uaa-spin{to{transform:rotate(360deg)}}
+    @keyframes uaa-scan{0%{top:6%}50%{top:78%}100%{top:6%}}
+    @keyframes uaa-sheet{from{transform:translateY(101%)}to{transform:translateY(0)}}
+    @keyframes uaa-fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+  </style>
+</helmet>
+<div style="min-height:100vh;width:100%;display:flex;align-items:center;justify-content:center;padding:26px;background:radial-gradient(130% 90% at 50% -10%, #1b1e30 0%, #101119 55%, #0a0b11 100%);font-family:var(--font-body)">
+  <div style="width:390px;flex:none;background:linear-gradient(160deg,#22242f,#0c0d14);padding:12px;border-radius:52px;box-shadow:0 40px 90px -30px rgba(0,0,0,.85), 0 0 0 1px color-mix(in srgb, var(--color-text) 8%, transparent)">
+    <div style="position:relative;width:366px;height:792px;border-radius:42px;overflow:hidden;background:var(--color-bg);color:var(--color-text)">
+
+      <sc-if value="{{ showChrome }}" hint-placeholder-val="{{ true }}">
+        <div style="position:absolute;top:0;left:0;right:0;height:46px;z-index:20;display:flex;align-items:flex-end;justify-content:space-between;padding:0 24px 7px;background:linear-gradient(var(--color-bg) 62%, transparent);pointer-events:none">
+          <span style="font-size:15px;font-weight:600;letter-spacing:.02em">9:41</span>
+          <div style="display:flex;align-items:center;gap:6px;font-size:15px">
+            <i class="ph-fill ph-cell-signal-full"></i>
+            <i class="ph-fill ph-wifi-high"></i>
+            <i class="ph-fill ph-battery-high" style="font-size:18px"></i>
+          </div>
+        </div>
+        <div style="position:absolute;top:9px;left:50%;transform:translateX(-50%);width:108px;height:30px;background:#05060a;border-radius:18px;z-index:35"></div>
+      </sc-if>
+
+      <div style="position:absolute;top:0;left:0;right:0;bottom:72px;overflow:hidden;z-index:1">
+
+        <!-- ══ ACCUEIL ══ -->
+        <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+          <div style="height:100%;overflow-y:auto;padding:46px 18px 22px">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+              <div style="display:flex;align-items:center;gap:10px">
+                <div style="width:34px;height:34px;border-radius:9px;display:grid;place-items:center;background:color-mix(in srgb, var(--color-accent) 16%, transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--color-accent) 45%, transparent)">
+                  <i class="ph-fill ph-shield-check" style="font-size:19px;color:var(--color-accent)"></i>
+                </div>
+                <span style="font-size:14px;font-weight:600;letter-spacing:.01em">Universal Admin AI</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:4px">
+                <button aria-label="Langue" onClick="{{ langToast }}" style="background:none;border:0;cursor:pointer;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;color:color-mix(in srgb, var(--color-text) 55%, transparent)"><i class="ph ph-globe" style="font-size:20px"></i></button>
+                <button aria-label="Profil" onClick="{{ goProfile }}" style="border:0;cursor:pointer;width:38px;height:38px;border-radius:50%;background:var(--color-surface);display:grid;place-items:center;font-weight:600;font-size:14px;color:var(--color-accent)">C</button>
+              </div>
+            </div>
+
+            <h1 style="font-size:30px;margin:0 0 4px;font-weight:600;letter-spacing:-.02em">Bonjour Camille</h1>
+            <p style="font-size:16px;color:color-mix(in srgb, var(--color-text) 55%, transparent);margin:0 0 22px">Que puis-je faire pour vous aujourd’hui ?</p>
+
+            <div style="background:var(--color-surface);border-radius:16px;padding:15px 16px 8px;margin-bottom:22px;box-shadow:var(--shadow-sm)">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+                <span style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:color-mix(in srgb, var(--color-text) 55%, transparent)">Aujourd’hui</span>
+                <span style="font-size:12px;color:var(--color-accent)">3 à traiter</span>
+              </div>
+              <button onClick="{{ goTasks }}" style="width:100%;background:none;border:0;cursor:pointer;display:flex;align-items:center;gap:12px;padding:11px 0;text-align:left">
+                <span style="width:10px;height:10px;border-radius:50%;flex:none;background:oklch(0.68 0.15 25)"></span>
+                <span style="flex:1"><span style="display:block;font-size:15px;font-weight:500;color:var(--color-text)">Assurance habitation</span><span style="display:block;font-size:13px;color:color-mix(in srgb, var(--color-text) 55%, transparent)">Document à signer · à faire aujourd’hui</span></span>
+                <i class="ph ph-caret-right" style="font-size:16px;color:color-mix(in srgb, var(--color-text) 40%, transparent)"></i>
+              </button>
+              <button onClick="{{ goTasks }}" style="width:100%;background:none;border:0;cursor:pointer;display:flex;align-items:center;gap:12px;padding:11px 0;text-align:left;border-top:1px solid var(--color-divider)">
+                <span style="width:10px;height:10px;border-radius:50%;flex:none;background:oklch(0.77 0.12 72)"></span>
+                <span style="flex:1"><span style="display:block;font-size:15px;font-weight:500;color:var(--color-text)">Facture Internet — 92,00 €</span><span style="display:block;font-size:13px;color:color-mix(in srgb, var(--color-text) 55%, transparent)">Paiement dans 3 jours</span></span>
+                <i class="ph ph-caret-right" style="font-size:16px;color:color-mix(in srgb, var(--color-text) 40%, transparent)"></i>
+              </button>
+              <button onClick="{{ goTasks }}" style="width:100%;background:none;border:0;cursor:pointer;display:flex;align-items:center;gap:12px;padding:11px 0;text-align:left;border-top:1px solid var(--color-divider)">
+                <span style="width:10px;height:10px;border-radius:50%;flex:none;background:oklch(0.74 0.11 158)"></span>
+                <span style="flex:1"><span style="display:block;font-size:15px;font-weight:500;color:var(--color-text)">Contrat mobile</span><span style="display:block;font-size:13px;color:color-mix(in srgb, var(--color-text) 55%, transparent)">Renouvellement dans 28 jours</span></span>
+                <i class="ph ph-caret-right" style="font-size:16px;color:color-mix(in srgb, var(--color-text) 40%, transparent)"></i>
+              </button>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
+              <sc-for list="{{ tiles }}" as="t" hint-placeholder-count="4">
+                <button onClick="{{ t.onClick }}" style="background:var(--color-surface);border:1px solid var(--color-divider);border-radius:16px;padding:16px;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:10px;min-height:116px;color:var(--color-text)">
+                  <span style="width:42px;height:42px;border-radius:11px;display:grid;place-items:center;background:color-mix(in srgb, var(--color-accent) 14%, transparent)"><i class="{{ t.icon }}" style="font-size:22px;color:var(--color-accent)"></i></span>
+                  <span style="margin-top:auto"><span style="display:block;font-size:15px;font-weight:600;line-height:1.25">{{ t.label }}</span><span style="display:block;font-size:12px;color:color-mix(in srgb, var(--color-text) 55%, transparent);margin-top:2px">{{ t.sub }}</span></span>
+                </button>
+              </sc-for>
+            </div>
+
+            <button onClick="{{ openAdd }}" style="width:100%;min-height:58px;display:flex;align-items:center;justify-content:center;gap:10px;border-radius:15px;cursor:pointer;font-size:17px;font-weight:600;color:var(--color-accent);background:color-mix(in srgb, var(--color-accent) 12%, transparent);border:1px solid var(--color-accent);box-shadow:0 12px 34px -14px color-mix(in srgb, var(--color-accent) 70%, transparent);font-family:var(--font-heading)"><i class="ph ph-plus" style="font-size:20px"></i> Ajouter un document</button>
+            <p style="display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:color-mix(in srgb, var(--color-text) 42%, transparent);margin:12px 0 0"><i class="ph ph-lock-simple"></i> Vos documents sont chiffrés et privés.</p>
+          </div>
+        </sc-if>
+
+        <!-- ══ ANALYSE EN COURS ══ -->
+        <sc-if value="{{ isAnalyzing }}">
+          <div style="height:100%;overflow-y:auto;padding:46px 18px 22px;display:flex;flex-direction:column">
+            <div style="margin:auto;width:100%;max-width:300px;text-align:center">
+              <div style="position:relative;width:150px;height:192px;margin:0 auto 26px;border-radius:12px;background:var(--color-neutral-100);box-shadow:var(--shadow-md);overflow:hidden">
+                <div style="padding:18px 16px;text-align:left">
+                  <div style="width:46px;height:8px;border-radius:3px;background:var(--color-accent);opacity:.85;margin-bottom:16px"></div>
+                  <div style="height:6px;border-radius:3px;background:#c9cde0;margin-bottom:9px"></div>
+                  <div style="height:6px;border-radius:3px;background:#c9cde0;margin-bottom:9px;width:82%"></div>
+                  <div style="height:6px;border-radius:3px;background:#c9cde0;margin-bottom:9px"></div>
+                  <div style="height:6px;border-radius:3px;background:#c9cde0;margin-bottom:9px;width:64%"></div>
+                  <div style="height:6px;border-radius:3px;background:#c9cde0;margin-bottom:9px;width:90%"></div>
+                  <div style="height:6px;border-radius:3px;background:#dfe2ee;margin-bottom:9px;width:50%"></div>
+                </div>
+                <div style="position:absolute;left:0;right:0;height:30px;top:6%;background:linear-gradient(color-mix(in srgb, var(--color-accent) 0%, transparent), color-mix(in srgb, var(--color-accent) 60%, transparent), color-mix(in srgb, var(--color-accent) 0%, transparent));animation:uaa-scan 1.9s ease-in-out infinite"></div>
+              </div>
+              <h2 style="font-size:22px;margin:0 0 6px;font-weight:600">Analyse en cours…</h2>
+              <p style="font-size:14px;color:color-mix(in srgb, var(--color-text) 55%, transparent);margin:0 0 24px">L’assistant lit et comprend votre document.</p>
+              <div style="text-align:left;display:flex;flex-direction:column;gap:15px;max-width:250px;margin:0 auto">
+                <sc-for list="{{ analyzeSteps }}" as="st" hint-placeholder-count="4">
+                  <div style="display:flex;align-items:center;gap:12px;font-size:15px">
+                    <span style="width:22px;height:22px;flex:none;display:grid;place-items:center">
+                      <sc-if value="{{ st.done }}"><i class="ph-fill ph-check-circle" style="font-size:22px;color:oklch(0.74 0.11 158)"></i></sc-if>
+                      <sc-if value="{{ st.active }}"><span style="width:18px;height:18px;border-radius:50%;border:2px solid color-mix(in srgb, var(--color-accent) 28%, transparent);border-top-color:var(--color-accent);animation:uaa-spin .7s linear infinite"></span></sc-if>
+                      <sc-if value="{{ st.todo }}"><span style="width:9px;height:9px;border-radius:50%;background:color-mix(in srgb, var(--color-text) 22%, transparent)"></span></sc-if>
+                    </span>
+                    <span style="color:var(--color-text)">{{ st.label }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- ══ RÉSULTAT ══ -->
+        <sc-if value="{{ isResult }}">
+          <div style="height:100%;overflow-y:auto;padding:46px 18px 26px">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">
+              <button onClick="{{ goHome }}" aria-label="Retour" style="border:0;cursor:pointer;width:40px;height:40px;border-radius:10px;background:var(--color-surface);display:grid;place-items:center;color:var(--color-text)"><i class="ph ph-arrow-left" style="font-size:20px"></i></button>
+              <div><div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent)">Analyse terminée</div><div style="font-size:20px;font-weight:600">Votre document</div></div>
+            </div>
+
+            <div style="background:var(--color-surface);border-radius:16px;padding:15px;display:flex;align-items:center;gap:14px;margin-bottom:16px;box-shadow:var(--shadow-sm)">
+              <div style="width:52px;height:52px;border-radius:12px;flex:none;display:grid;place-items:center;background:color-mix(in srgb, var(--color-accent) 14%, transparent)"><i class="ph ph-lightning" style="font-size:26px;color:var(--color-accent)"></i></div>
+              <div style="flex:1"><div style="font-size:12px;color:color-mix(in srgb, var(--color-text) 55%, transparent)">Type de document</div><div style="font-size:18px;font-weight:600">Facture d’électricité</div><div style="font-size:13px;color:color-mix(in srgb, var(--color-text) 55%, transparent)">EDF · Juillet 2026</div></div>
+              <span class="tag tag-neutral">PDF</span>
+            </div>
+
+            <div style="margin-bottom:16px">
+              <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:color-mix(in srgb, var(--color-text) 55%, transparent);margin-bottom:8px">Résumé</div>
+              <p style="font-size:16px;line-height:1.5;margin:0;text-wrap:pretty">Il s’agit d’une facture de <b>87,42 €</b> correspondant à votre consommation d’électricité du mois de juillet.</p>
+            </div>
+
+            <sc-if value="{{ simpleMode }}">
+              <div style="background:color-mix(in srgb, var(--color-accent) 10%, transparent);border-radius:14px;padding:14px 16px;margin-bottom:16px;box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--color-accent) 30%, transparent);animation:uaa-fade .25s ease">
+                <div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--color-accent);margin-bottom:6px"><i class="ph-fill ph-hand-heart"></i> Explication simplifiée</div>
+                <p style="font-size:15px;line-height:1.55;margin:0;text-wrap:pretty">En clair : c’est votre facture d’électricité de juillet. Vous devez payer 87,42 € avant le 28 août 2026. Si vous payez à temps, il n’y a rien d’autre à faire.</p>
+              </div>
+            </sc-if>
+
+            <div style="background:var(--color-surface);border-radius:16px;padding:8px 16px 12px;margin-bottom:16px;box-shadow:0 0 0 1px color-mix(in srgb, var(--color-accent) 35%, transparent)">
+              <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--color-accent);margin:8px 0 4px">⚠ À retenir</div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 0"><span style="font-size:14px;color:color-mix(in srgb, var(--color-text) 60%, transparent)">Montant</span><span style="font-size:17px;font-weight:600">87,42 €</span></div>
+              <div style="height:1px;background:var(--color-divider)"></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 0"><span style="font-size:14px;color:color-mix(in srgb, var(--color-text) 60%, transparent)">Date limite</span><span style="display:flex;align-items:center;gap:8px"><span style="font-size:17px;font-weight:600">28 août 2026</span><span style="font-size:11px;padding:2px 8px;border-radius:6px;background:color-mix(in srgb, oklch(0.77 0.12 72) 22%, transparent);color:oklch(0.86 0.09 78)">dans 12 j</span></span></div>
+            </div>
+
+            <div style="margin-bottom:20px">
+              <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:color-mix(in srgb, var(--color-text) 55%, transparent);margin-bottom:8px">Que devez-vous faire ?</div>
+              <div style="display:flex;align-items:flex-start;gap:10px;font-size:16px;line-height:1.5"><i class="ph-fill ph-arrow-right" style="color:var(--color-accent);margin-top:4px"></i><span style="text-wrap:pretty">Payer <b>87,42 €</b> à EDF avant le <b>28 août 2026</b>.</span></div>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <sc-if value="{{ reminderNotSet }}">
+                <button onClick="{{ setReminder }}" style="width:100%;min-height:52px;display:flex;align-items:center;justify-content:center;gap:10px;border-radius:13px;cursor:pointer;font-size:16px;font-weight:600;color:var(--color-accent);background:color-mix(in srgb, var(--color-accent) 12%, transparent);border:1px solid var(--color-accent);font-family:var(--font-heading)"><i class="ph ph-bell" style="font-size:19px"></i> Ajouter un rappel</button>
+              </sc-if>
+              <sc-if value="{{ reminderSet }}">
+                <div style="width:100%;min-height:52px;display:flex;align-items:center;justify-content:center;gap:9px;border-radius:13px;font-size:15px;font-weight:600;color:oklch(0.80 0.10 158);background:color-mix(in srgb, oklch(0.74 0.11 158) 12%, transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb, oklch(0.74 0.11 158) 45%, transparent)"><i class="ph-fill ph-check-circle" style="font-size:19px"></i> Rappel activé · 7, 3 et 1 j avant</div>
+              </sc-if>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+                <button onClick="{{ toggleSimple }}" style="background:var(--color-surface);border:1px solid var(--color-divider);border-radius:12px;padding:13px 8px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;font-weight:500;color:var(--color-text);min-height:48px"><i class="ph ph-hand-heart" style="color:var(--color-accent);font-size:17px"></i> Expliquer davantage</button>
+                <button onClick="{{ goDocview }}" style="background:var(--color-surface);border:1px solid var(--color-divider);border-radius:12px;padding:13px 8px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;font-weight:500;color:var(--color-text);min-height:48px"><i class="ph ph-file-text" style="color:var(--color-accent);font-size:17px"></i> Voir le document</button>
+                <button onClick="{{ goAssistant }}" style="background:var(--color-surface);border:1px solid var(--color-divider);border-radius:12px;padding:13px 8px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;font-weight:500;color:var(--color-text);min-height:48px"><i class="ph ph-chats-circle" style="color:var(--color-accent);font-size:17px"></i> Poser une question</button>
+                <sc-if value="{{ notClassified }}">
+                  <button onClick="{{ classify }}" style="background:var(--color-surface);border:1px solid var(--color-divider);border-radius:12px;padding:13px 8px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;font-weight:500;color:var(--color-text);min-height:48px"><i class="ph ph-folder-simple-plus" style="color:var(--color-accent);font-size:17px"></i> Classer</button>
+                </sc-if>
+                <sc-if value="{{ classified }}">
+                  <div style="border-radius:12px;padding:13px 8px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;font-weight:500;color:oklch(0.80 0.10 158);background:color-mix(in srgb, oklch(0.74 0.11 158) 12%, transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb, oklch(0.74 0.11 158) 40%, transparent);min-height:48px"><i class="ph-fill ph-folder-simple-star" style="font-size:17px"></i> Classé</div>
+                </sc-if>
+              </div>
+            </div>
+
+            <p style="display:flex;align-items:flex-start;gap:7px;font-size:12px;color:color-mix(in srgb, var(--color-text) 42%, transparent);margin:18px 0 0;line-height:1.5"><i class="ph ph-info" style="margin-top:2px"></i> <span style="text-wrap:pretty">Cette analyse est une aide pour comprendre votre document. Ce n’est pas un conseil juridique ou professionnel.</span></p>
+          </div>
+        </sc-if>
+
+        <!-- ══ VOIR LE DOCUMENT ══ -->
+        <sc-if value="{{ isDocview }}">
+          <div style="height:100%;overflow-y:auto;padding:46px 16px 26px">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+              <button onClick="{{ goResult }}" aria-label="Retour" style="border:0;cursor:pointer;width:40px;height:40px;border-radius:10px;background:var(--color-surface);display:grid;place-items:center;color:var(--color-text)"><i class="ph ph-arrow-left" style="font-size:20px"></i></button>
+              <div style="flex:1"><div style="font-size:15px;font-weight:600">Facture d’électricité.pdf</div><div style="font-size:12px;color:color-mix(in srgb, var(--color-text) 55%, transparent)">Page 1 sur 1</div></div>
+              <button onClick="{{ goAssistant }}" aria-label="Poser une question" style="border:0;cursor:pointer;width:40px;height:40px;border-radius:10px;background:var(--color-surface);display:grid;place-items:center;color:var(--color-text)"><i class="ph ph-chats-circle" style="font-size:20px"></i></button>
+            </div>
+            <div style="background:var(--color-neutral-100);color:#2b2e3a;border-radius:10px;padding:22px 20px 26px;box-shadow:var(--shadow-md);font-size:13px;line-height:1.6">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px">
+                <div><div style="font-size:22px;font-weight:700;color:#0f1a3a;letter-spacing:.02em">EDF</div><div style="color:#6a6f7e;font-size:11px">Électricité de France</div></div>
+                <div style="text-align:right;font-size:11px;color:#6a6f7e">Facture n° 2026-07-8841<br>Émise le 31 juillet 2026</div>
+              </div>
+              <div style="font-size:15px;font-weight:700;color:#0f1a3a;margin-bottom:12px">Facture d’électricité — Juillet 2026</div>
+              <div style="color:#6a6f7e;margin-bottom:18px">Client : Camille Laurent<br>12 rue des Lilas, 75011 Paris</div>
+              <div style="border-top:1px solid #d5d8e4;border-bottom:1px solid #d5d8e4;padding:10px 0;margin-bottom:16px">
+                <div style="display:flex;justify-content:space-between;padding:3px 0"><span>Abonnement mensuel</span><span>12,90 €</span></div>
+                <div style="display:flex;justify-content:space-between;padding:3px 0"><span>Consommation · 245 kWh</span><span>61,20 €</span></div>
+                <div style="display:flex;justify-content:space-between;padding:3px 0"><span>Taxes (TVA, CSPE)</span><span>13,32 €</span></div>
+              </div>
+              <div style="position:relative;display:flex;justify-content:space-between;align-items:center;padding:9px 10px;border-radius:8px;box-shadow:0 0 0 2px var(--color-accent);margin-bottom:20px">
+                <span style="font-weight:700;color:#0f1a3a">Total à payer</span><span style="font-weight:700;font-size:16px;color:#0f1a3a">87,42 €</span>
+                <span style="position:absolute;top:-9px;right:8px;font-size:10px;background:var(--color-accent);color:var(--color-neutral-100);padding:2px 7px;border-radius:6px">détecté</span>
+              </div>
+              <div style="position:relative;display:inline-flex;align-items:center;padding:7px 11px;border-radius:8px;box-shadow:0 0 0 2px var(--color-accent);color:#0f1a3a;font-weight:600">
+                À régler avant le 28 août 2026
+                <span style="position:absolute;top:-9px;left:8px;font-size:10px;background:var(--color-accent);color:var(--color-neutral-100);padding:2px 7px;border-radius:6px">échéance</span>
+              </div>
+            </div>
+            <p style="display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:color-mix(in srgb, var(--color-text) 42%, transparent);margin:16px 0 0"><i class="ph ph-sparkle"></i> L’IA a surligné les informations détectées.</p>
+          </div>
+        </sc-if>
+
+        <!-- ══ ASSISTANT ══ -->
+        <sc-if value="{{ isAssistant }}">
+          <div style="height:100%;display:flex;flex-direction:column;padding-top:46px">
+            <div style="padding:0 16px 12px;flex:none">
+              <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+                <button onClick="{{ goHome }}" aria-label="Retour" style="border:0;cursor:pointer;width:40px;height:40px;border-radius:10px;background:var(--color-surface);display:grid;place-items:center;color:var(--color-text)"><i class="ph ph-arrow-left" style="font-size:20px"></i></button>
+                <div style="flex:1"><div style="font-size:18px;font-weight:600">Assistant</div><div style="font-size:12px;color:color-mix(in srgb, var(--color-text) 55%, transparent)">Réponses basées sur vos documents</div></div>
+                <span style="width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb, var(--color-accent) 16%, transparent)"><i class="ph-fill ph-sparkle" style="color:var(--color-accent)"></i></span>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;background:var(--color-surface);border-radius:10px;padding:8px 12px;font-size:12px">
+                <i class="ph ph-file-text" style="color:var(--color-accent)"></i>
+                <span style="flex:1;color:color-mix(in srgb, var(--color-text) 75%, transparent)">Contexte : <b style="font-weight:600;color:var(--color-text)">Facture d’électricité · EDF</b></span>
+                <span style="display:flex;align-items:center;gap:4px;color:color-mix(in srgb, var(--color-text) 50%, transparent)"><i class="ph ph-lock-simple"></i> accès limité</span>
+              </div>
+            </div>
+            <div ref="{{ setChatRef }}" style="flex:1;overflow-y:auto;padding:8px 16px;display:flex;flex-direction:column;gap:12px">
+              <sc-for list="{{ chat }}" as="m" hint-placeholder-count="1">
+                <sc-if value="{{ m.isAi }}"><div style="align-self:flex-start;max-width:84%;background:var(--color-surface);border-radius:16px 16px 16px 4px;padding:12px 14px;font-size:15px;line-height:1.5;text-wrap:pretty">{{ m.text }}</div></sc-if>
+                <sc-if value="{{ m.isUser }}"><div style="align-self:flex-end;max-width:84%;background:color-mix(in srgb, var(--color-accent) 18%, transparent);box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--color-accent) 30%, transparent);border-radius:16px 16px 4px 16px;padding:12px 14px;font-size:15px;line-height:1.5">{{ m.text }}</div></sc-if>
+              </sc-for>
+              <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:2px">
+                <sc-for list="{{ suggestions }}" as="sg" hint-placeholder-count="4">
+                  <button onClick="{{ sg.onClick }}" style="background:none;border:1px solid var(--color-accent);color:var(--color-accent);border-radius:999px;padding:8px 14px;font-size:13px;cursor:pointer">{{ sg.q }}</button>
+                </sc-for>
+              </div>
+            </div>
+            <div style="flex:none;padding:10px 16px 12px;border-top:1px solid var(--color-divider);display:flex;align-items:center;gap:8px">
+              <input class="input" placeholder="Écrivez votre question…" value="{{ draft }}" onChange="{{ onDraft }}" onKeyDown="{{ onKey }}" style="flex:1;border-radius:999px;min-height:44px" />
+              <button aria-label="Envoyer" onClick="{{ send }}" style="width:44px;height:44px;flex:none;border-radius:50%;border:0;cursor:pointer;background:var(--color-accent);color:var(--color-bg);display:grid;place-items:center"><i class="ph-fill ph-paper-plane-tilt" style="font-size:18px"></i></button>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- ══ TÂCHES ══ -->
+        <sc-if value="{{ isTasks }}">
+          <div style="height:100%;overflow-y:auto;padding:46px 18px 22px">
+            <div style="margin-bottom:18px"><h1 style="font-size:26px;margin:0 0 2px;font-weight:600">À faire</h1><p style="font-size:14px;color:color-mix(in srgb, var(--color-text) 55%, transparent);margin:0">{{ tasksRemaining }} tâches en attente</p></div>
+            <div style="display:flex;align-items:center;gap:8px;margin:6px 0 10px"><span style="width:9px;height:9px;border-radius:50%;background:oklch(0.68 0.15 25)"></span><span style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:color-mix(in srgb, var(--color-text) 55%, transparent)">Urgent</span></div>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+              <sc-for list="{{ urgentTasks }}" as="t" hint-placeholder-count="2">
+                <div style="background:var(--color-surface);border-radius:14px;padding:14px;display:flex;align-items:flex-start;gap:12px;box-shadow:var(--shadow-sm)">
+                  <button onClick="{{ t.onDone }}" aria-label="Terminer" style="border:0;background:none;padding:0;width:26px;height:26px;flex:none;margin-top:1px;cursor:pointer;display:grid;place-items:center">
+                    <sc-if value="{{ t.done }}"><i class="ph-fill ph-check-circle" style="font-size:26px;color:oklch(0.74 0.11 158)"></i></sc-if>
+                    <sc-if value="{{ t.notDone }}"><span style="width:22px;height:22px;border-radius:50%;box-shadow:inset 0 0 0 2px color-mix(in srgb, var(--color-text) 30%, transparent)"></span></sc-if>
+                  </button>
+                  <div style="flex:1">
+                    <sc-if value="{{ t.done }}"><div style="font-size:15px;font-weight:500;text-decoration:line-through;color:color-mix(in srgb, var(--color-text) 45%, transparent)">{{ t.title }}</div></sc-if>
+                    <sc-if value="{{ t.notDone }}"><div style="font-size:15px;font-weight:500">{{ t.title }}</div></sc-if>
+                    <div style="font-size:13px;color:color-mix(in srgb, var(--color-text) 55%, transparent);margin-top:3px">{{ t.due }} · {{ t.from }}</div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;margin:6px 0 10px"><span style="width:9px;height:9px;border-radius:50%;background:oklch(0.77 0.12 72)"></span><span style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:color-mix(in srgb, var(--color-text) 55%, transparent)">À faire bientôt</span></div>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px">
+              <sc-for list="{{ soonTasks }}" as="t" hint-placeholder-count="2">
+                <div style="background:var(--color-surface);border-radius:14px;padding:14px;display:flex;align-items:flex-start;gap:12px;box-shadow:var(--shadow-sm)">
+                  <button onClick="{{ t.onDone }}" aria-label="Terminer" style="border:0;background:none;padding:0;width:26px;height:26px;flex:none;margin-top:1px;cursor:pointer;display:grid;place-items:center">
+                    <sc-if value="{{ t.done }}"><i class="ph-fill ph-check-circle" style="font-size:26px;color:oklch(0.74 0.11 158)"></i></sc-if>
+                    <sc-if value="{{ t.notDone }}"><span style="width:22px;height:22px;border-radius:50%;box-shadow:inset 0 0 0 2px color-mix(in srgb, var(--color-text) 30%, transparent)"></span></sc-if>
+                  </button>
+                  <div style="flex:1">
+                    <sc-if value="{{ t.done }}"><div style="font-size:15px;font-weight:500;text-decoration:line-through;color:color-mix(in srgb, var(--color-text) 45%, transparent)">{{ t.title }}</div></sc-if>
+                    <sc-if value="{{ t.notDone }}"><div style="font-size:15px;font-weight:500">{{ t.title }}</div></sc-if>
+                    <div style="font-size:13px;color:color-mix(in srgb, var(--color-text) 55%, transparent);margin-top:3px">{{ t.due }} · {{ t.from }}</div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;margin:6px 0 10px"><span style="width:9px;height:9px;border-radius:50%;background:oklch(0.74 0.11 158)"></span><span style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:color-mix(in srgb, var(--color-text) 55%, transparent)">Planifié</span></div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <sc-for list="{{ plannedTasks }}" as="t" hint-placeholder-count="1">
+                <div style="background:var(--color-surface);border-radius:14px;padding:14px;display:flex;align-items:flex-start;gap:12px;box-shadow:var(--shadow-sm)">
+                  <button onClick="{{ t.onDone }}" aria-label="Terminer" style="border:0;background:none;padding:0;width:26px;height:26px;flex:none;margin-top:1px;cursor:pointer;display:grid;place-items:center">
+                    <sc-if value="{{ t.done }}"><i class="ph-fill ph-check-circle" style="font-size:26px;color:oklch(0.74 0.11 158)"></i></sc-if>
+                    <sc-if value="{{ t.notDone }}"><span style="width:22px;height:22px;border-radius:50%;box-shadow:inset 0 0 0 2px color-mix(in srgb, var(--color-text) 30%, transparent)"></span></sc-if>
+                  </button>
+                  <div style="flex:1">
+                    <sc-if value="{{ t.done }}"><div style="font-size:15px;font-weight:500;text-decoration:line-through;color:color-mix(in srgb, var(--color-text) 45%, transparent)">{{ t.title }}</div></sc-if>
+                    <sc-if value="{{ t.notDone }}"><div style="font-size:15px;font-weight:500">{{ t.title }}</div></sc-if>
+                    <div style="font-size:13px;color:color-mix(in srgb, var(--color-text) 55%, transparent);margin-top:3px">{{ t.due }} · {{ t.from }}</div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- ══ DOCUMENTS ══ -->
+        <sc-if value="{{ isDocs }}">
+          <div style="height:100%;overflow-y:auto;padding:46px 18px 22px">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+              <h1 style="font-size:26px;margin:0;font-weight:600">Mes documents</h1>
+              <button onClick="{{ openAdd }}" aria-label="Ajouter" style="border:0;cursor:pointer;width:40px;height:40px;border-radius:10px;background:var(--color-surface);display:grid;place-items:center;color:var(--color-accent)"><i class="ph ph-plus" style="font-size:20px"></i></button>
+            </div>
+            <div style="position:relative;margin-bottom:8px">
+              <i class="ph ph-magnifying-glass" style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:color-mix(in srgb, var(--color-text) 50%, transparent);font-size:18px"></i>
+              <input class="input" placeholder="Rechercher dans mes documents" style="padding-left:42px;min-height:46px;border-radius:12px" />
+            </div>
+            <p style="font-size:12px;color:color-mix(in srgb, var(--color-text) 42%, transparent);margin:0 0 20px">La recherche comprend le sens : essayez « mon assurance habitation ».</p>
+            <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:color-mix(in srgb, var(--color-text) 55%, transparent);margin-bottom:10px">Catégories</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:22px">
+              <sc-for list="{{ categories }}" as="c" hint-placeholder-count="6">
+                <button onClick="{{ c.onClick }}" style="background:var(--color-surface);border:1px solid var(--color-divider);border-radius:14px;padding:12px;display:flex;align-items:center;gap:10px;cursor:pointer;min-height:60px;color:var(--color-text)">
+                  <span style="width:34px;height:34px;flex:none;border-radius:9px;display:grid;place-items:center;background:color-mix(in srgb, var(--color-accent) 13%, transparent)"><i class="{{ c.icon }}" style="font-size:18px;color:var(--color-accent)"></i></span>
+                  <span style="flex:1;text-align:left"><span style="display:block;font-size:14px;font-weight:500">{{ c.name }}</span><span style="display:block;font-size:12px;color:color-mix(in srgb, var(--color-text) 50%, transparent)">{{ c.count }}</span></span>
+                </button>
+              </sc-for>
+            </div>
+            <div style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:color-mix(in srgb, var(--color-text) 55%, transparent);margin-bottom:10px">Récents</div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <sc-for list="{{ recents }}" as="r" hint-placeholder-count="3">
+                <button onClick="{{ r.onClick }}" style="background:var(--color-surface);border:1px solid var(--color-divider);border-radius:14px;padding:13px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;color:var(--color-text)">
+                  <span style="width:38px;height:38px;flex:none;border-radius:9px;display:grid;place-items:center;background:color-mix(in srgb, var(--color-accent) 13%, transparent)"><i class="ph ph-file-text" style="font-size:19px;color:var(--color-accent)"></i></span>
+                  <span style="flex:1;text-align:left"><span style="display:block;font-size:15px;font-weight:500">{{ r.name }}</span><span style="display:block;font-size:12px;color:color-mix(in srgb, var(--color-text) 50%, transparent);margin-top:2px">{{ r.meta }}</span></span>
+                  <i class="ph ph-caret-right" style="font-size:16px;color:color-mix(in srgb, var(--color-text) 40%, transparent)"></i>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- ══ PROFIL ══ -->
+        <sc-if value="{{ isProfile }}">
+          <div style="height:100%;overflow-y:auto;padding:46px 18px 22px">
+            <h1 style="font-size:26px;margin:0 0 18px;font-weight:600">Profil</h1>
+            <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px">
+              <div style="width:60px;height:60px;border-radius:50%;background:color-mix(in srgb, var(--color-accent) 18%, transparent);display:grid;place-items:center;font-size:22px;font-weight:600;color:var(--color-accent)">C</div>
+              <div><div style="font-size:18px;font-weight:600">Camille Laurent</div><div style="font-size:14px;color:color-mix(in srgb, var(--color-text) 55%, transparent)">camille.laurent@email.com</div></div>
+            </div>
+            <div style="border-radius:16px;padding:16px;margin-bottom:22px;background:color-mix(in srgb, var(--color-accent) 10%, transparent);box-shadow:0 0 0 1px color-mix(in srgb, var(--color-accent) 35%, transparent)">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px"><span class="tag tag-accent">PREMIUM</span><span style="font-size:20px;font-weight:700">300 €<span style="font-size:12px;font-weight:400;color:color-mix(in srgb, var(--color-text) 55%, transparent)"> /mois</span></span></div>
+              <div style="font-size:13px;color:color-mix(in srgb, var(--color-text) 60%, transparent);margin-bottom:12px">Prochaine facturation le 15 septembre 2026</div>
+              <button onClick="{{ manageToast }}" class="btn btn-secondary btn-block" style="min-height:44px">Gérer l’abonnement</button>
+            </div>
+            <div style="display:flex;flex-direction:column;background:var(--color-surface);border-radius:14px;padding:4px;margin-bottom:16px">
+              <sc-for list="{{ settingsRows }}" as="sr" hint-placeholder-count="6">
+                <button onClick="{{ sr.onClick }}" style="border:0;background:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:13px 12px;color:var(--color-text);text-align:left">
+                  <i class="{{ sr.icon }}" style="font-size:19px;color:var(--color-accent);width:22px"></i>
+                  <span style="flex:1;font-size:15px">{{ sr.label }}</span>
+                  <span style="font-size:13px;color:color-mix(in srgb, var(--color-text) 50%, transparent)">{{ sr.value }}</span>
+                  <i class="ph ph-caret-right" style="font-size:15px;color:color-mix(in srgb, var(--color-text) 40%, transparent)"></i>
+                </button>
+              </sc-for>
+            </div>
+            <button onClick="{{ logoutToast }}" style="width:100%;background:none;border:0;cursor:pointer;padding:12px;font-size:14px;color:color-mix(in srgb, var(--color-text) 55%, transparent)">Se déconnecter</button>
+          </div>
+        </sc-if>
+
+      </div>
+
+      <!-- ══ BARRE DE NAVIGATION ══ -->
+      <div style="position:absolute;left:0;right:0;bottom:0;height:72px;z-index:20;background:color-mix(in srgb, var(--color-surface) 90%, var(--color-bg));backdrop-filter:blur(14px);border-top:1px solid var(--color-divider);padding:8px 8px 0">
+        <div style="display:flex;justify-content:space-around;align-items:center">
+          <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="5">
+            <button onClick="{{ n.onClick }}" aria-label="{{ n.label }}" style="background:none;border:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 6px;min-width:52px;color: {{ n.navColor }}">
+              <i class="{{ n.iconClass }}" style="font-size:22px"></i>
+              <span style="font-size:11px;font-weight:500">{{ n.label }}</span>
+            </button>
+          </sc-for>
+        </div>
+        <sc-if value="{{ showChrome }}"><div style="width:128px;height:5px;border-radius:3px;background:color-mix(in srgb, var(--color-text) 28%, transparent);margin:5px auto 0"></div></sc-if>
+      </div>
+
+      <!-- ══ FEUILLE : AJOUTER ══ -->
+      <sc-if value="{{ addSheet }}">
+        <div onClick="{{ closeAdd }}" style="position:absolute;inset:0;z-index:40;background:color-mix(in srgb, #05060c 62%, transparent);display:flex;flex-direction:column;justify-content:flex-end">
+          <div onClick="{{ stop }}" style="background:var(--color-surface);border-radius:22px 22px 0 0;padding:10px 20px 26px;animation:uaa-sheet .3s cubic-bezier(.2,.8,.2,1)">
+            <div style="width:40px;height:5px;border-radius:3px;background:color-mix(in srgb, var(--color-text) 24%, transparent);margin:0 auto 16px"></div>
+            <div style="font-size:20px;font-weight:600;margin-bottom:4px">Ajouter un document</div>
+            <p style="font-size:14px;color:color-mix(in srgb, var(--color-text) 58%, transparent);margin:0 0 18px">L’assistant lira et comprendra votre document pour vous.</p>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <sc-for list="{{ sources }}" as="sc" hint-placeholder-count="4">
+                <button onClick="{{ sc.onClick }}" style="background:color-mix(in srgb, var(--color-text) 5%, transparent);border:1px solid var(--color-divider);border-radius:13px;padding:13px 14px;display:flex;align-items:center;gap:14px;cursor:pointer;color:var(--color-text)">
+                  <span style="width:42px;height:42px;flex:none;border-radius:11px;display:grid;place-items:center;background:color-mix(in srgb, var(--color-accent) 14%, transparent)"><i class="{{ sc.icon }}" style="font-size:21px;color:var(--color-accent)"></i></span>
+                  <span style="flex:1;text-align:left"><span style="display:block;font-size:15px;font-weight:600">{{ sc.label }}</span><span style="display:block;font-size:12px;color:color-mix(in srgb, var(--color-text) 52%, transparent);margin-top:1px">{{ sc.sub }}</span></span>
+                  <i class="ph ph-caret-right" style="font-size:16px;color:color-mix(in srgb, var(--color-text) 40%, transparent)"></i>
+                </button>
+              </sc-for>
+            </div>
+            <p style="display:flex;align-items:center;justify-content:center;gap:6px;text-align:center;font-size:12px;color:color-mix(in srgb, var(--color-text) 42%, transparent);margin:16px 0 0"><i class="ph ph-stack"></i> Vous pouvez envoyer plusieurs documents à la fois.</p>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- ══ TOAST ══ -->
+      <sc-if value="{{ toastShow }}">
+        <div style="position:absolute;left:16px;right:16px;bottom:88px;z-index:45;display:flex;align-items:center;gap:10px;background:var(--color-neutral-900);box-shadow:var(--shadow-md);border-radius:12px;padding:12px 14px;font-size:14px;animation:uaa-fade .25s ease">
+          <i class="ph-fill ph-check-circle" style="color:oklch(0.74 0.11 158);font-size:20px;flex:none"></i>
+          <span style="flex:1">{{ toastText }}</span>
+        </div>
+      </sc-if>
+
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:470,&quot;height&quot;:900},&quot;startScreen&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Accueil&quot;,&quot;Résultat d’analyse&quot;,&quot;Assistant&quot;,&quot;Mes tâches&quot;,&quot;Documents&quot;,&quot;Profil&quot;],&quot;default&quot;:&quot;Accueil&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Démo&quot;},&quot;simpleLanguage&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Démo&quot;},&quot;hideStatusChrome&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Démo&quot;}}">
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    const map = { 'Accueil':'home','Résultat d’analyse':'result','Assistant':'assistant','Mes tâches':'tasks','Documents':'docs','Profil':'profile' };
+    this.state = {
+      screen: (props && map[props.startScreen]) || 'home',
+      addSheet:false, analyzeStep:0,
+      simpleMode: !!(props && props.simpleLanguage),
+      reminderSet:false, classified:false, toast:null, draft:'',
+      chat:[{role:'ai',text:'Bonjour ! Posez-moi une question sur vos documents. Je réponds simplement, à partir de ce que vous m’autorisez à consulter.'}],
+      tasks:[
+        {id:'t1',prio:'urgent',title:'Signer votre assurance habitation',due:'Aujourd’hui',from:'Assurance · MAIF',done:false},
+        {id:'t2',prio:'urgent',title:'Payer la facture Internet — 92,00 €',due:'Dans 3 j · 19 août',from:'Facture · Orange',done:false},
+        {id:'t3',prio:'soon',title:'Payer la facture d’électricité — 87,42 €',due:'Dans 12 j · 28 août',from:'Facture · EDF',done:false},
+        {id:'t4',prio:'soon',title:'Renouveler la carte grise',due:'Dans 18 j · 3 sept.',from:'Automobile · ANTS',done:false},
+        {id:'t5',prio:'planned',title:'Renouvellement du contrat mobile',due:'Dans 28 j · 13 sept.',from:'Contrat · Free',done:false}
+      ]
+    };
+  }
+  componentWillUnmount(){ this._clear(); if(this._toastT) clearTimeout(this._toastT); }
+  componentDidUpdate(pp, ps){ if(this._chat && ps.chat && this.state.chat.length!==ps.chat.length){ this._chat.scrollTop = this._chat.scrollHeight; } }
+  _clear(){ (this._t||[]).forEach(clearTimeout); this._t=[]; }
+  go(screen){ this._clear(); this.setState({ screen, addSheet:false }); }
+  openAdd(){ this.setState({ addSheet:true }); }
+  closeAdd(){ this.setState({ addSheet:false }); }
+  pickSource(){
+    this._clear();
+    this.setState({ addSheet:false, screen:'analyzing', analyzeStep:0, simpleMode:!!(this.props&&this.props.simpleLanguage), reminderSet:false, classified:false });
+    this._t = [];
+    [700,1300,1900,2500].forEach((ms,i)=> this._t.push(setTimeout(()=> this.setState({ analyzeStep:i+1 }), ms)));
+    this._t.push(setTimeout(()=> this.setState({ screen:'result' }), 3100));
+  }
+  toast(text){ if(this._toastT) clearTimeout(this._toastT); this.setState({ toast:text }); this._toastT = setTimeout(()=> this.setState({ toast:null }), 2800); }
+  toggleSimple(){ this.setState(s=>({ simpleMode:!s.simpleMode })); }
+  setReminder(){ if(this.state.reminderSet) return; this.setState({ reminderSet:true }); this.toast('Rappel activé — alertes 7, 3 et 1 jour avant.'); }
+  classify(){ if(this.state.classified) return; this.setState({ classified:true }); this.toast('Document classé dans « Factures ».'); }
+  completeTask(id){ this.setState(s=>({ tasks:s.tasks.map(t=> t.id===id?{...t,done:!t.done}:t) })); }
+  ask(q,a){ this.setState(s=>({ screen:'assistant', chat:[...s.chat, {role:'user',text:q}, {role:'ai',text:a}] })); }
+  send(){ const d=(this.state.draft||'').trim(); if(!d) return; this.ask(d,'Je réponds uniquement à partir de vos documents autorisés. Pour cette démonstration, choisissez une suggestion ci-dessus — je peux résumer, traduire, trouver les dates ou rédiger une réponse.'); this.setState({ draft:'' }); }
+  renderVals(){
+    const s = this.state, scr = s.screen;
+    const NAV = [['home','Accueil','house'],['docs','Documents','folders'],['tasks','Tâches','list-checks'],['assistant','Assistant','chat-circle-dots'],['profile','Profil','user']];
+    const at = ['home','docs','tasks','assistant','profile'].includes(scr) ? scr : '';
+    const navItems = NAV.map(([key,label,ic])=>({ label, iconClass:(at===key?'ph-fill ph-':'ph ph-')+ic, navColor: at===key?'var(--color-accent)':'color-mix(in srgb, var(--color-text) 45%, transparent)', onClick:()=>this.go(key) }));
+    const tiles = [
+      {icon:'ph ph-file-magnifying-glass',label:'Analyser un document',sub:'Photo, PDF ou image',onClick:()=>this.openAdd()},
+      {icon:'ph ph-chats-circle',label:'Poser une question',sub:'Assistant IA',onClick:()=>this.go('assistant')},
+      {icon:'ph ph-list-checks',label:'Mes tâches',sub:s.tasks.filter(t=>!t.done).length+' à faire',onClick:()=>this.go('tasks')},
+      {icon:'ph ph-calendar-dots',label:'Mes échéances',sub:'Prochaine dans 3 j',onClick:()=>this.go('tasks')}
+    ];
+    const labels = ['Lecture du document','Extraction des informations','Compréhension du contenu','Préparation de vos actions'];
+    const analyzeSteps = labels.map((label,i)=>({ label, done:i<s.analyzeStep, active:i===s.analyzeStep, todo:i>s.analyzeStep }));
+    const chat = s.chat.map(m=>({ text:m.text, isUser:m.role==='user', isAi:m.role==='ai' }));
+    const SUG = [
+      ['Est-ce que je dois répondre ?','Non, aucune réponse n’est nécessaire. Cette facture demande seulement un paiement de 87,42 € avant le 28 août 2026.'],
+      ['Explique comme si j’avais 10 ans','C’est le papier de l’électricité. Il dit que tu dois payer 87,42 € pour l’électricité utilisée en juillet. Il faut payer avant le 28 août, sinon ça peut coûter un peu plus cher.'],
+      ['Trouve les dates importantes','J’ai trouvé 2 dates : la facture date du 31 juillet 2026, et le paiement doit être fait avant le 28 août 2026. (Source : page 1 du document.)'],
+      ['Que se passe-t-il si je ne paie pas ?','Je n’ai pas assez d’informations dans ce document pour être certain des pénalités exactes. En général, un retard peut entraîner des frais. Voulez-vous que je prépare un e-mail à EDF pour demander un délai ? Vous validerez avant tout envoi.']
+    ];
+    const suggestions = SUG.map(([q,a])=>({ q, onClick:()=>this.ask(q,a) }));
+    const mapTask = x=>({ id:x.id, title:x.title, due:x.due, from:x.from, done:x.done, notDone:!x.done, onDone:()=>this.completeTask(x.id) });
+    const byPrio = p=> s.tasks.filter(t=>t.prio===p).map(mapTask);
+    const catData = [['Banque','bank','2 documents'],['Logement','house-line','5 documents'],['Automobile','car','3 documents'],['Assurance','shield-check','4 documents'],['Travail','briefcase','6 documents'],['Finances','wallet','3 documents'],['Factures','receipt','9 documents'],['Contrats','file-text','5 documents'],['Administration','buildings','7 documents'],['Autres','dots-three-circle','2 documents']];
+    const categories = catData.map(([name,ic,count])=>({ name, count, icon:'ph ph-'+ic, onClick:()=>this.toast('Catégorie : '+name) }));
+    const recents = [
+      {name:'Facture d’électricité — juillet',meta:'Factures · EDF · 31 juil. 2026',onClick:()=>this.go('result')},
+      {name:'Assurance habitation',meta:'Assurance · MAIF · à signer',onClick:()=>this.toast('Ouverture du document bientôt disponible.')},
+      {name:'Contrat mobile',meta:'Contrats · Free · 24 mois',onClick:()=>this.toast('Ouverture du document bientôt disponible.')},
+      {name:'Avis d’imposition 2025',meta:'Administration · 12 sept. 2025',onClick:()=>this.toast('Ouverture du document bientôt disponible.')}
+    ];
+    const setData = [['Notifications','bell',''],['Sécurité & 2FA','shield-check',''],['Confidentialité & données','lock-key',''],['Pays & langue','globe','France · FR'],['Mode d’explication','hand-heart','Simple'],['Aide','question','']];
+    const settingsRows = setData.map(([label,ic,value])=>({ label, value, icon:'ph ph-'+ic, onClick:()=>this.toast('Bientôt disponible dans cette démo.') }));
+    const sources = [
+      {icon:'ph ph-camera',label:'Prendre une photo',sub:'Photographier un document papier',onClick:()=>this.pickSource()},
+      {icon:'ph ph-image',label:'Choisir une photo',sub:'Depuis votre galerie',onClick:()=>this.pickSource()},
+      {icon:'ph ph-file-pdf',label:'Importer un PDF',sub:'Même les gros fichiers',onClick:()=>this.pickSource()},
+      {icon:'ph ph-paperclip',label:'Importer un document',sub:'Word, image, e-mail…',onClick:()=>this.pickSource()}
+    ];
+    return {
+      showChrome: !(this.props && this.props.hideStatusChrome),
+      isHome:scr==='home', isDocs:scr==='docs', isTasks:scr==='tasks', isAssistant:scr==='assistant', isProfile:scr==='profile', isAnalyzing:scr==='analyzing', isResult:scr==='result', isDocview:scr==='docview',
+      addSheet:s.addSheet, simpleMode:s.simpleMode, reminderSet:s.reminderSet, reminderNotSet:!s.reminderSet, classified:s.classified, notClassified:!s.classified,
+      toastShow:!!s.toast, toastText:s.toast||'', draft:s.draft, tasksRemaining:s.tasks.filter(t=>!t.done).length,
+      navItems, tiles, analyzeSteps, chat, suggestions, categories, recents, settingsRows, sources,
+      urgentTasks:byPrio('urgent'), soonTasks:byPrio('soon'), plannedTasks:byPrio('planned'),
+      goHome:()=>this.go('home'), goDocs:()=>this.go('docs'), goTasks:()=>this.go('tasks'), goAssistant:()=>this.go('assistant'), goProfile:()=>this.go('profile'), goResult:()=>this.go('result'), goDocview:()=>this.go('docview'),
+      openAdd:()=>this.openAdd(), closeAdd:()=>this.closeAdd(), pickSource:()=>this.pickSource(), toggleSimple:()=>this.toggleSimple(), setReminder:()=>this.setReminder(), classify:()=>this.classify(),
+      stop:(e)=>e.stopPropagation(),
+      langToast:()=>this.toast('Interface en français. Sélecteur de langue à venir.'),
+      manageToast:()=>this.toast('Gestion de l’abonnement bientôt disponible.'),
+      logoutToast:()=>this.toast('Déconnexion bientôt disponible dans la démo.'),
+      onDraft:(e)=>this.setState({ draft:e.target.value }),
+      onKey:(e)=>{ if(e.key==='Enter') this.send(); },
+      send:()=>this.send(),
+      setChatRef:(el)=>{ this._chat = el; }
+    };
+  }
+}
+</script>
+</body>
+</html>
