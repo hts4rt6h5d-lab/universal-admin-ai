@@ -1,8 +1,8 @@
 node_modules
-dist
+/dist
 .env
 .env.test
 .env.*.local
-storage/
-storage-test/
+/storage/
+/storage-test/
 *.log
