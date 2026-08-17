@@ -1,0 +1,427 @@
+// Universal Admin AI — data model.
+// Every user-owned table carries a userId used by middleware/entitlements.ts
+// and the ownership checks in routes/*.ts to enforce per-user isolation
+// (see test/integration/documents.idor.test.ts).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ── Identity ──────────────────────────────────────────────────────────────
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id              String    @id @default(uuid())
+  email           String?   @unique
+  phone           String?   @unique
+  passwordHash    String
+  firstName       String
+  countryCode     String
+  locale          String    @default("fr")
+  role            Role      @default(USER)
+  emailVerifiedAt DateTime?
+  phoneVerifiedAt DateTime?
+  mfaEnabled      Boolean   @default(false)
+  mfaSecret       String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  deletedAt       DateTime?
+
+  profile              Profile?
+  preferences          UserPreference?
+  sessions             Session[]
+  devices              ConnectedDevice[]
+  subscriptions        Subscription[]
+  payments             Payment[]
+  promotionRedemptions PromotionRedemption[]
+  documents            Document[]
+  tasks                Task[]
+  deadlines            Deadline[]
+  notifications        Notification[]
+  conversations        Conversation[]
+  auditLogs            AuditLog[]
+  securityEvents       SecurityEvent[]
+}
+
+model Profile {
+  id        String   @id @default(uuid())
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  timezone  String   @default("Europe/Paris")
+  currency  String   @default("EUR")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model UserPreference {
+  id                 String   @id @default(uuid())
+  userId             String   @unique
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  aiExplanationLevel String   @default("simple") // "simple" | "standard" | "expert"
+  aiTone             String   @default("neutral")
+  notifyEmail        Boolean  @default(true)
+  notifyPush         Boolean  @default(true)
+  remindersEnabled   Boolean  @default(true)
+  updatedAt          DateTime @updatedAt
+}
+
+model ConnectedDevice {
+  id          String    @id @default(uuid())
+  userId      String
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  label       String?
+  userAgent   String?
+  ipAddress   String?
+  firstSeenAt DateTime  @default(now())
+  lastSeenAt  DateTime  @default(now())
+  sessions    Session[]
+}
+
+model Session {
+  id         String           @id @default(uuid())
+  userId     String
+  user       User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  deviceId   String?
+  device     ConnectedDevice? @relation(fields: [deviceId], references: [id])
+  tokenHash  String           @unique
+  ipAddress  String?
+  userAgent  String?
+  createdAt  DateTime         @default(now())
+  expiresAt  DateTime
+  revokedAt  DateTime?
+}
+
+// ── Subscriptions & payments ────────────────────────────────────────────
+
+enum PlanCode {
+  STANDARD
+  PREMIUM
+}
+
+enum SubscriptionStatus {
+  INCOMPLETE
+  ACTIVE
+  PAST_DUE
+  CANCELED
+  UNPAID
+  TRIALING
+}
+
+model Subscription {
+  id                   String              @id @default(uuid())
+  userId               String
+  user                 User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  planCode             PlanCode
+  status               SubscriptionStatus
+  stripeCustomerId     String?
+  stripeSubscriptionId String?             @unique
+  currentPeriodEnd     DateTime?
+  cancelAtPeriodEnd    Boolean             @default(false)
+  createdAt            DateTime            @default(now())
+  updatedAt            DateTime            @updatedAt
+
+  events               SubscriptionEvent[]
+  payments             Payment[]
+  promotionRedemptions PromotionRedemption[]
+}
+
+model SubscriptionEvent {
+  id             String       @id @default(uuid())
+  subscriptionId String
+  subscription   Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+  type           String
+  payloadJson    Json?
+  createdAt      DateTime     @default(now())
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCEEDED
+  FAILED
+  REFUNDED
+}
+
+model Payment {
+  id                    String        @id @default(uuid())
+  userId                String
+  user                  User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subscriptionId        String?
+  subscription          Subscription? @relation(fields: [subscriptionId], references: [id])
+  stripePaymentIntentId String?       @unique
+  amountCents           Int
+  currency              String
+  status                PaymentStatus
+  createdAt             DateTime      @default(now())
+
+  promotionRedemption   PromotionRedemption?
+}
+
+model Promotion {
+  id             String   @id @default(uuid())
+  code           String   @unique
+  description    String
+  amountOffCents Int
+  appliesToPlan  PlanCode
+  active         Boolean  @default(true)
+
+  redemptions PromotionRedemption[]
+}
+
+enum RedemptionStatus {
+  CONFIRMED
+  REVOKED
+}
+
+// The @@unique([userId, promotionId]) constraint below is the actual
+// enforcement mechanism for "one redemption per user, ever" — see spec
+// section 9. It survives cancel/resubscribe because it keys off userId,
+// not subscriptionId, and it's a database constraint, not a frontend or
+// application-layer check, so it holds even under concurrent requests.
+model PromotionRedemption {
+  id             String           @id @default(uuid())
+  userId         String
+  user           User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  promotionId    String
+  promotion      Promotion        @relation(fields: [promotionId], references: [id])
+  subscriptionId String?
+  subscription   Subscription?    @relation(fields: [subscriptionId], references: [id])
+  paymentId      String?          @unique
+  payment        Payment?         @relation(fields: [paymentId], references: [id])
+  status         RedemptionStatus @default(CONFIRMED)
+  redeemedAt     DateTime         @default(now())
+
+  @@unique([userId, promotionId])
+}
+
+// ── Documents ────────────────────────────────────────────────────────────
+
+enum DocumentStatus {
+  UPLOADED
+  PROCESSING
+  ANALYZED
+  FAILED
+}
+
+model Document {
+  id                  String         @id @default(uuid())
+  userId              String
+  user                User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  originalName        String
+  mimeType            String
+  sizeBytes           Int
+  storageKey          String
+  status              DocumentStatus @default(UPLOADED)
+  category            String?
+  detectedCountry     String?
+  detectedLanguage    String?
+  detectionConfidence Float?
+  createdAt           DateTime       @default(now())
+  updatedAt           DateTime       @updatedAt
+  deletedAt           DateTime?
+
+  pages    DocumentPage[]
+  analysis DocumentAnalysis?
+  sources  DocumentSource[]
+  tasks    Task[]
+  deadlines Deadline[]
+}
+
+model DocumentPage {
+  id            String   @id @default(uuid())
+  documentId    String
+  document      Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  pageNumber    Int
+  extractedText String?
+  createdAt     DateTime @default(now())
+
+  @@unique([documentId, pageNumber])
+}
+
+model DocumentAnalysis {
+  id             String   @id @default(uuid())
+  documentId     String   @unique
+  document       Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  documentType   String?
+  summary        String?
+  simpleSummary  String?
+  amountCents    Int?
+  currency       String?
+  dueDate        DateTime?
+  actionRequired String?
+  confidence     Float?
+  aiProvider     String
+  rawJson        Json?
+  createdAt      DateTime @default(now())
+}
+
+// A source citation for a piece of analysis or a chat answer — see spec
+// sections 16/39: every claim is either grounded in the document, grounded
+// in an official source, flagged as AI interpretation, or flagged uncertain.
+model DocumentSource {
+  id         String   @id @default(uuid())
+  documentId String
+  document   Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  label      String
+  kind       String // "document" | "official" | "ai_interpretation" | "uncertain"
+  url        String?
+  createdAt  DateTime @default(now())
+}
+
+// ── Tasks, deadlines, notifications ─────────────────────────────────────
+
+enum TaskPriority {
+  URGENT
+  SOON
+  PLANNED
+}
+
+enum TaskStatus {
+  OPEN
+  DONE
+}
+
+model Task {
+  id         String       @id @default(uuid())
+  userId     String
+  user       User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  documentId String?
+  document   Document?    @relation(fields: [documentId], references: [id])
+  title      String
+  priority   TaskPriority
+  status     TaskStatus   @default(OPEN)
+  dueAt      DateTime?
+  source     String?
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+}
+
+model Deadline {
+  id               String   @id @default(uuid())
+  userId           String
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  documentId       String?
+  document         Document? @relation(fields: [documentId], references: [id])
+  title            String
+  dueAt            DateTime
+  remindDaysBefore Int[]    @default([30, 14, 7, 3, 1])
+  createdAt        DateTime @default(now())
+}
+
+model Notification {
+  id        String    @id @default(uuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  channel   String // "email" | "push"
+  title     String
+  body      String
+  sentAt    DateTime?
+  readAt    DateTime?
+  createdAt DateTime  @default(now())
+}
+
+// ── Assistant ────────────────────────────────────────────────────────────
+
+model Conversation {
+  id        String    @id @default(uuid())
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String?
+  createdAt DateTime  @default(now())
+  messages  Message[]
+}
+
+model Message {
+  id             String       @id @default(uuid())
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  role           String // "user" | "ai"
+  content        String
+  sourcesJson    Json?
+  createdAt      DateTime     @default(now())
+}
+
+// ── i18n & country rules ─────────────────────────────────────────────────
+
+// Admin-editable overrides layered on top of the static locale JSON files
+// in locales/ (see src/i18n). Static files are the source of truth for
+// what ships; this table exists for the "editable without redeploy" case.
+model Translation {
+  id        String   @id @default(uuid())
+  namespace String
+  key       String
+  locale    String
+  value     String
+  updatedAt DateTime @updatedAt
+
+  @@unique([namespace, key, locale])
+}
+
+// Deliberately NOT a claim of legal coverage — coverageLevel documents how
+// much of country_profiles.md's guidance has actually been filled in for
+// this country. See spec section 40: "ne pas prétendre que tous les pays
+// sont juridiquement couverts dès la première version."
+model CountryProfile {
+  code               String @id
+  name               String
+  defaultLocale      String
+  currency           String
+  dateFormat         String
+  phoneFormat        String?
+  addressFormat      String?
+  officialSources    Json?
+  knownDocumentTypes Json?
+  knownAuthorities   Json?
+  coverageLevel      String @default("basic") // "basic" | "partial" | "detailed"
+}
+
+// Stripe redelivers webhooks on timeout/retry (and can send the same
+// event more than once under normal operation, per Stripe's own docs) —
+// this table is the idempotency guard: handleWebhookEvent inserts the
+// event id before doing any work, and a unique-constraint failure means
+// "already processed," so the handler returns early. See
+// test/integration/subscriptions.webhook.test.ts's "redelivered" case.
+model ProcessedWebhookEvent {
+  id          String   @id // Stripe event id
+  type        String
+  processedAt DateTime @default(now())
+}
+
+// ── Audit & security ─────────────────────────────────────────────────────
+
+model AuditLog {
+  id           String   @id @default(uuid())
+  userId       String?
+  user         User?    @relation(fields: [userId], references: [id])
+  action       String
+  targetType   String?
+  targetId     String?
+  metadataJson Json?
+  ipAddress    String?
+  createdAt    DateTime @default(now())
+}
+
+enum SecuritySeverity {
+  INFO
+  WARNING
+  CRITICAL
+}
+
+model SecurityEvent {
+  id           String           @id @default(uuid())
+  userId       String?
+  user         User?            @relation(fields: [userId], references: [id])
+  type         String
+  severity     SecuritySeverity @default(INFO)
+  ipAddress    String?
+  metadataJson Json?
+  createdAt    DateTime         @default(now())
+}

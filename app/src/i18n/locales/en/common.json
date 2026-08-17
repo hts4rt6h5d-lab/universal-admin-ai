@@ -1,0 +1,75 @@
+{
+  "welcome": {
+    "title": "Welcome",
+    "subtitle": "Your personal administrative assistant.",
+    "next": "Next"
+  },
+  "auth": {
+    "signupTitle": "Welcome",
+    "firstName": "First name",
+    "country": "Country",
+    "email": "Email address",
+    "phone": "Phone number",
+    "password": "Password",
+    "continueWithPhone": "Continue with my phone number",
+    "continueWithEmail": "Continue with my email",
+    "createAccount": "Create my account",
+    "alreadyHaveAccount": "I already have an account",
+    "login": "Log in",
+    "loginTitle": "Welcome back",
+    "emailOrPhone": "Email or phone"
+  },
+  "subscription": {
+    "title": "Choose your plan",
+    "subtitle": "An active subscription is required to use Universal Admin AI.",
+    "standard": "Standard",
+    "premium": "Premium",
+    "recommended": "RECOMMENDED",
+    "perMonth": "/month",
+    "promoBanner": "Welcome offer: 20 € off",
+    "firstMonthPrice": "{{price}} for the first month",
+    "thenPrice": "then {{price}}/month",
+    "chooseStandard": "Choose Standard",
+    "choosePremium": "Choose Premium",
+    "configurationRequired": "Payments aren't configured on this demo server yet.",
+    "manage": "Manage subscription",
+    "cancel": "Cancel subscription"
+  },
+  "dashboard": {
+    "title": "Home",
+    "greeting": "Hello {{firstName}}",
+    "prompt": "What can I help you with today?",
+    "today": "Today",
+    "allClear": "Everything's under control."
+  },
+  "documents": {
+    "title": "My documents",
+    "upload": "Add a document",
+    "analyzing": "Analyzing…",
+    "search": "Search my documents",
+    "takePhoto": "Take a photo",
+    "choosePhoto": "Choose a photo",
+    "importPdf": "Import a PDF",
+    "importDocument": "Import a document"
+  },
+  "tasks": {
+    "title": "To-do",
+    "urgent": "Urgent",
+    "soon": "Coming up",
+    "planned": "Planned"
+  },
+  "assistant": {
+    "title": "Assistant",
+    "placeholder": "Type your question…",
+    "insufficientInfo": "I don't have enough information to be certain."
+  },
+  "profile": {
+    "title": "Profile",
+    "logout": "Log out"
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "network": "Couldn't reach the server. Check your connection.",
+    "invalidCredentials": "Invalid credentials."
+  }
+}

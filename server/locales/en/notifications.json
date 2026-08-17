@@ -1,0 +1,14 @@
+{
+  "payment_failed": {
+    "title": "Payment failed",
+    "body": "We couldn't process your last payment. Please check your payment method."
+  },
+  "subscription_canceled": {
+    "title": "Subscription canceled",
+    "body": "Your subscription has been canceled and will stay active until the end of the current period."
+  },
+  "deadline_reminder": {
+    "title": "Upcoming deadline",
+    "body": "\"{{title}}\" is due on {{date}}."
+  }
+}

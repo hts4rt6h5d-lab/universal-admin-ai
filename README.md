@@ -23,3 +23,14 @@ The design medium is **HTML/CSS/JS** — these are prototypes, not production co
 - `README.md` — this file
 - `chats/` — conversation transcripts (read these!)
 - `project/` — the `Validation formulaire projet` project files (HTML prototypes, assets, components)
+
+## Implementation status
+
+This bundle has since been implemented as a real, running product:
+
+- `app/` — the React frontend (see `app/README.md`).
+- `server/` — the Express + PostgreSQL backend: auth, subscriptions,
+  Stripe, entitlements, document analysis, chatbot (see `server/README.md`
+  for setup and a full "what's real vs. what needs configuration" table).
+
+Start with `server/README.md`, then `app/README.md`.

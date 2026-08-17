@@ -1,0 +1,14 @@
+@import "./nocturne.css";
+
+@keyframes uaa-spin { to { transform: rotate(360deg); } }
+@keyframes uaa-scan { 0% { top: 6%; } 50% { top: 78%; } 100% { top: 6%; } }
+@keyframes uaa-sheet { from { transform: translateY(101%); } to { transform: translateY(0); } }
+@keyframes uaa-fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}

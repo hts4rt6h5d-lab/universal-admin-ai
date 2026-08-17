@@ -1,0 +1,75 @@
+{
+  "welcome": {
+    "title": "Bienvenue à vous",
+    "subtitle": "Votre assistant administratif personnel.",
+    "next": "Suivant"
+  },
+  "auth": {
+    "signupTitle": "Bienvenue",
+    "firstName": "Prénom",
+    "country": "Pays",
+    "email": "Adresse e-mail",
+    "phone": "Numéro de téléphone",
+    "password": "Mot de passe",
+    "continueWithPhone": "Continuer avec mon numéro de téléphone",
+    "continueWithEmail": "Continuer avec mon e-mail",
+    "createAccount": "Créer mon compte",
+    "alreadyHaveAccount": "J'ai déjà un compte",
+    "login": "Se connecter",
+    "loginTitle": "Content de vous revoir",
+    "emailOrPhone": "E-mail ou téléphone"
+  },
+  "subscription": {
+    "title": "Choisissez votre formule",
+    "subtitle": "Un abonnement actif est nécessaire pour utiliser Universal Admin AI.",
+    "standard": "Standard",
+    "premium": "Premium",
+    "recommended": "RECOMMANDÉ",
+    "perMonth": "/mois",
+    "promoBanner": "Offre de bienvenue : 20 € offerts",
+    "firstMonthPrice": "{{price}} pour le premier mois",
+    "thenPrice": "puis {{price}}/mois",
+    "chooseStandard": "Choisir Standard",
+    "choosePremium": "Choisir Premium",
+    "configurationRequired": "Le paiement n'est pas encore configuré sur ce serveur de démonstration.",
+    "manage": "Gérer l'abonnement",
+    "cancel": "Annuler l'abonnement"
+  },
+  "dashboard": {
+    "title": "Accueil",
+    "greeting": "Bonjour {{firstName}}",
+    "prompt": "Que puis-je faire pour vous aujourd'hui ?",
+    "today": "Aujourd'hui",
+    "allClear": "Tout est sous contrôle."
+  },
+  "documents": {
+    "title": "Mes documents",
+    "upload": "Ajouter un document",
+    "analyzing": "Analyse en cours…",
+    "search": "Rechercher dans mes documents",
+    "takePhoto": "Prendre une photo",
+    "choosePhoto": "Choisir une photo",
+    "importPdf": "Importer un PDF",
+    "importDocument": "Importer un document"
+  },
+  "tasks": {
+    "title": "À faire",
+    "urgent": "Urgent",
+    "soon": "À faire bientôt",
+    "planned": "Planifié"
+  },
+  "assistant": {
+    "title": "Assistant",
+    "placeholder": "Écrivez votre question…",
+    "insufficientInfo": "Je n'ai pas suffisamment d'informations pour être certain."
+  },
+  "profile": {
+    "title": "Profil",
+    "logout": "Se déconnecter"
+  },
+  "errors": {
+    "generic": "Une erreur inattendue s'est produite. Merci de réessayer.",
+    "network": "Impossible de contacter le serveur. Vérifiez votre connexion.",
+    "invalidCredentials": "Identifiants invalides."
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "welcome": {
+    "title": "Bienvenido",
+    "subtitle": "Su asistente administrativo personal.",
+    "next": "Siguiente"
+  },
+  "auth": {
+    "signupTitle": "Bienvenido",
+    "firstName": "Nombre",
+    "country": "País",
+    "email": "Correo electrónico",
+    "phone": "Número de teléfono",
+    "password": "Contraseña",
+    "continueWithPhone": "Continuar con mi número de teléfono",
+    "continueWithEmail": "Continuar con mi correo",
+    "createAccount": "Crear mi cuenta",
+    "alreadyHaveAccount": "Ya tengo una cuenta",
+    "login": "Iniciar sesión",
+    "loginTitle": "Bienvenido de nuevo",
+    "emailOrPhone": "Correo o teléfono"
+  },
+  "subscription": {
+    "title": "Elige tu plan",
+    "subtitle": "Se necesita una suscripción activa para usar Universal Admin AI.",
+    "standard": "Standard",
+    "premium": "Premium",
+    "recommended": "RECOMENDADO",
+    "perMonth": "/mes",
+    "promoBanner": "Oferta de bienvenida: 20 € de descuento",
+    "firstMonthPrice": "{{price}} el primer mes",
+    "thenPrice": "luego {{price}}/mes",
+    "chooseStandard": "Elegir Standard",
+    "choosePremium": "Elegir Premium",
+    "configurationRequired": "Los pagos aún no están configurados en este servidor de demostración.",
+    "manage": "Gestionar suscripción",
+    "cancel": "Cancelar suscripción"
+  },
+  "dashboard": {
+    "title": "Inicio",
+    "greeting": "Hola {{firstName}}",
+    "prompt": "¿En qué puedo ayudarte hoy?",
+    "today": "Hoy",
+    "allClear": "Todo está bajo control."
+  },
+  "documents": {
+    "title": "Mis documentos",
+    "upload": "Añadir un documento",
+    "analyzing": "Analizando…",
+    "search": "Buscar en mis documentos",
+    "takePhoto": "Tomar una foto",
+    "choosePhoto": "Elegir una foto",
+    "importPdf": "Importar un PDF",
+    "importDocument": "Importar un documento"
+  },
+  "tasks": {
+    "title": "Tareas",
+    "urgent": "Urgente",
+    "soon": "Próximamente",
+    "planned": "Planificado"
+  },
+  "assistant": {
+    "title": "Asistente",
+    "placeholder": "Escribe tu pregunta…",
+    "insufficientInfo": "No tengo suficiente información para estar seguro."
+  },
+  "profile": {
+    "title": "Perfil",
+    "logout": "Cerrar sesión"
+  },
+  "errors": {
+    "generic": "Ha ocurrido un error inesperado. Inténtelo de nuevo.",
+    "network": "No se pudo contactar con el servidor. Compruebe su conexión.",
+    "invalidCredentials": "Credenciales no válidas."
+  }
+}

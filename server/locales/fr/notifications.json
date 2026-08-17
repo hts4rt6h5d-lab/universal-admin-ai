@@ -1,0 +1,14 @@
+{
+  "payment_failed": {
+    "title": "Échec de paiement",
+    "body": "Nous n'avons pas pu traiter votre dernier paiement. Merci de vérifier votre moyen de paiement."
+  },
+  "subscription_canceled": {
+    "title": "Abonnement annulé",
+    "body": "Votre abonnement a bien été annulé et restera actif jusqu'à la fin de la période en cours."
+  },
+  "deadline_reminder": {
+    "title": "Échéance à venir",
+    "body": "« {{title}} » arrive à échéance le {{date}}."
+  }
+}

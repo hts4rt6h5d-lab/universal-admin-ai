@@ -1,0 +1,75 @@
+{
+  "welcome": {
+    "title": "Willkommen",
+    "subtitle": "Ihr persönlicher Verwaltungsassistent.",
+    "next": "Weiter"
+  },
+  "auth": {
+    "signupTitle": "Willkommen",
+    "firstName": "Vorname",
+    "country": "Land",
+    "email": "E-Mail-Adresse",
+    "phone": "Telefonnummer",
+    "password": "Passwort",
+    "continueWithPhone": "Mit meiner Telefonnummer fortfahren",
+    "continueWithEmail": "Mit meiner E-Mail fortfahren",
+    "createAccount": "Konto erstellen",
+    "alreadyHaveAccount": "Ich habe bereits ein Konto",
+    "login": "Anmelden",
+    "loginTitle": "Willkommen zurück",
+    "emailOrPhone": "E-Mail oder Telefon"
+  },
+  "subscription": {
+    "title": "Wählen Sie Ihren Plan",
+    "subtitle": "Für Universal Admin AI ist ein aktives Abonnement erforderlich.",
+    "standard": "Standard",
+    "premium": "Premium",
+    "recommended": "EMPFOHLEN",
+    "perMonth": "/Monat",
+    "promoBanner": "Willkommensangebot: 20 € Rabatt",
+    "firstMonthPrice": "{{price}} für den ersten Monat",
+    "thenPrice": "danach {{price}}/Monat",
+    "chooseStandard": "Standard wählen",
+    "choosePremium": "Premium wählen",
+    "configurationRequired": "Zahlungen sind auf diesem Demo-Server noch nicht konfiguriert.",
+    "manage": "Abonnement verwalten",
+    "cancel": "Abonnement kündigen"
+  },
+  "dashboard": {
+    "title": "Start",
+    "greeting": "Hallo {{firstName}}",
+    "prompt": "Wie kann ich Ihnen heute helfen?",
+    "today": "Heute",
+    "allClear": "Alles unter Kontrolle."
+  },
+  "documents": {
+    "title": "Meine Dokumente",
+    "upload": "Dokument hinzufügen",
+    "analyzing": "Analyse läuft…",
+    "search": "In meinen Dokumenten suchen",
+    "takePhoto": "Foto aufnehmen",
+    "choosePhoto": "Foto auswählen",
+    "importPdf": "PDF importieren",
+    "importDocument": "Dokument importieren"
+  },
+  "tasks": {
+    "title": "Aufgaben",
+    "urgent": "Dringend",
+    "soon": "Demnächst",
+    "planned": "Geplant"
+  },
+  "assistant": {
+    "title": "Assistent",
+    "placeholder": "Schreiben Sie Ihre Frage…",
+    "insufficientInfo": "Ich habe nicht genug Informationen, um sicher zu sein."
+  },
+  "profile": {
+    "title": "Profil",
+    "logout": "Abmelden"
+  },
+  "errors": {
+    "generic": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut.",
+    "network": "Der Server konnte nicht erreicht werden. Prüfen Sie Ihre Verbindung.",
+    "invalidCredentials": "Ungültige Anmeldedaten."
+  }
+}
